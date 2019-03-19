@@ -6,7 +6,6 @@
       <script src="C:\Users\jzimmerman1\Desktop\APCSP\Create Task Try 2\CTT2.js"></script>
     </head>
     <body style="background-color:black;" onload="startGame();">
-      <div>
       <table style="width:400px;" border="1">
         <tr>
           <td>Wins</td>
@@ -23,14 +22,10 @@
           <td id="opponentCards"></td>
         </tr>
       </table>
-      <button style="width:400px;">Flip!</button>
-      </div>
-      <div border="1" style="border:1px solid white; height = 50px; width = 100%;">
-      </div>
-      <div border="1" style="border:1px solid white; height = 50px; width = 100%;">
-      </div>
-      <div border="1" style="border:1px solid white; height = 50px; width = 100%;">
-      </div>
+      <button style="width:400px;" onclick="flip();">Flip!</button>
+      <div border="1" class="gameDiv"></div>
+      <div border="1" class="gameDiv"></div>
+      <div border="1" class="gameDiv"></div>
     </body>
   </main>
 </html>

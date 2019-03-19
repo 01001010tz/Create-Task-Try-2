@@ -6,6 +6,8 @@ function start(){
   var nyCards;
   var suit;
   var cardValue;
+  var ycArray[];
+  var nycArray[];
 }
 
 function startGame(){
@@ -14,6 +16,24 @@ function startGame(){
   wlRatio = document.getElementById("wlRatio").innerHTML = 0.0;
   yCards = document.getElementById("yourCards").innerHTML = 26;
   nyCards = document.getElementById("opponentCards").innerHTML= 26;
+
+  while (ycArray.length < 26) {
+    let newCard = Math.floor(Math.random() * 52) + 1;
+      if (ycArray.includes(newCard) == false) {
+        ycArray.push(newCard);
+      }
+  }
+  while (nycArray.length < 26) {
+    let newCard = Math.floor(Math.random() * 52) + 1;
+      if (nycArray.includes(newCard) == false) {
+        nycArray.push(newCard);
+      }
+  }
+  console.log(ycArray);
+  console.log(nycArray);
+}
+
+function flip(){
 
 }
 

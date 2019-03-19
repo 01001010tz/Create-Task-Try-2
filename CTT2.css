@@ -2,3 +2,10 @@ table {
   color:white;
   border:1px white;
 }
+
+.gameDiv {
+  border:1;
+  color:white;
+  height:50px;
+  width:100px;
+}
