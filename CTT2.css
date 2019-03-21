@@ -3,9 +3,13 @@ table {
   border:1px white;
 }
 
+body {
+  background-color:black;
+}
+
 .gameDiv {
-  border:1;
-  color:white;
-  height:50px;
-  width:100px;
+  border: 5px solid white;
+  background-color:black;
+  min-height:100px;
+  width:400px;
 }
