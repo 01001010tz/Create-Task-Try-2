@@ -38,14 +38,14 @@ function startGame(){
   nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
 }
 
-/*function flip(){
+function flip(){
   turns++;
   let place = turns % 26;
 
   let yCard = ycArray[place];
   let nyCard = nycArray[place];
 
-  findCard(yCard);
+/*  findCard(yCard);
   yCard {
     suit : cardSpecs[0],
     value : cardSpecs[1],
@@ -81,8 +81,8 @@ function startGame(){
     console.log(yCard.value);
   } else if (yCard.value < nyCard.value) {
     console.log(nyCard.value);
-  }
-}*/
+  }*/
+}
 
 function findCard(cardId){
   if (cardId%4 == 0) {

@@ -1,6 +1,6 @@
 table {
   color:white;
-  border:1px white;
+  border:2px white;
 }
 
 body {
@@ -12,4 +12,16 @@ body {
   background-color:black;
   min-height:100px;
   width:400px;
+}
+
+#war{
+text-align: center;
+}
+
+#warP{
+text-align: center;
+}
+
+#warButton{
+align:center;
 }
