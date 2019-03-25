@@ -1,3 +1,8 @@
+var turns = 0;
+var ycArray = [];
+var nycArray = [];
+var cardSpecs = [];
+
 function startGame(){
   var wins = 0;
   var losses = 0;
@@ -6,11 +11,6 @@ function startGame(){
   var nyCards;
   var suit;
   var cardValue;
-  var turns = 0;
-  var ycArray = [];
-  var nycArray = [];
-  var cardSpecs = [];
-  const CARD_SPECS = 2;
 
 
   for (var y = 0; y < 26; y++) {
@@ -38,50 +38,53 @@ function startGame(){
   nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
 }
 
-function flip(){
-  turns++;
-  let place = turns % 26;
+function yCardFlip(y, nyv){
+  findCard(y);
+/*  if (cardSpecs[0] =="") {
 
+  } else if (cardSpecs[0] == "") {
+
+  } else if (cardSpecs[0] == "") {
+
+  } else if (cardSpecs[0] == "") {
+
+  }*/
+  let yCardValue = cardSpecs[1];
+
+  if (nyv > yCardValue) {
+    console.log("Loss");
+  } else if (nyv < yCardValue){
+    console.log("Win");
+  } else if (nyv == yCardValue){
+    console.log("Draw");
+  }
+  console.log(cardSpecs);
+}
+
+function nyCardFlip(ny, y){
+  findCard(ny);
+  /*if (cardSpecs[0] =="") {
+
+  } else if (cardSpecs[0] == "") {
+
+  } else if (cardSpecs[0] == "") {
+
+  } else if (cardSpecs[0] == "") {
+
+  } */
+  console.log(cardSpecs);
+  var nyCardValue = cardSpecs[1];
+  cardSpecs = [];
+  yCardFlip(y, nyCardValue);
+}
+
+function flip(){
+  turns += 1;
+  let place = turns % 26;
   let yCard = ycArray[place];
   let nyCard = nycArray[place];
-
-/*  findCard(yCard);
-  yCard {
-    suit : cardSpecs[0],
-    value : cardSpecs[1],
-  };
-  findCard(nyCard);
-  nyCard {
-    suit : cardSpecs[0],
-    value : cardSpecs[1],
-  };
-
-  if (nyCard.suit == "spades") {
-    console.log(nyCard.suit);
-  } else if (nyCard.suit == "clubs") {
-    console.log(nyCard.suit);
-  } else if (nyCard.suit == "hearts") {
-    console.log(nyCard.suit);
-  } else if (nyCard.suit == "diamonds") {
-    console.log(nyCard.suit);
-  }
-
-  if (yCard.suit == "spades") {
-    console.log(yCard.suit);
-  } else if (yCard.suit == "clubs") {
-    console.log(yCard.suit);
-  } else if (yCard.suit == "hearts") {
-    console.log(yCard.suit);
-  } else if (yCard.suit == "diamonds") {
-    console.log(yCard.suit);
-  }
-
-
-  if (yCard.value > nyCard.value) {
-    console.log(yCard.value);
-  } else if (yCard.value < nyCard.value) {
-    console.log(nyCard.value);
-  }*/
+  cardSpecs = [];
+  nyCardFlip(nyCard, yCard);
 }
 
 function findCard(cardId){
@@ -306,7 +309,7 @@ function findCard(cardId){
         break;
     }
   }
-  cardSpecs[0] = suit;
-  cardSpecs[1] = cardValue;
+  cardSpecs.push(suit);
+  cardSpecs.push(cardValue);
   return cardSpecs;
 }
