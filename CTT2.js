@@ -2,10 +2,10 @@ var turns = 0;
 var ycArray = [];
 var nycArray = [];
 var cardSpecs = [];
+var wins = 0;
+var losses = 0;
 
 function startGame(){
-  var wins = 0;
-  var losses = 0;
   var wlRatio = wins/losses;
   var yCards;
   var nyCards;
@@ -40,39 +40,47 @@ function startGame(){
 
 function yCardFlip(y, nyv){
   findCard(y);
-/*  if (cardSpecs[0] =="") {
 
-  } else if (cardSpecs[0] == "") {
-
-  } else if (cardSpecs[0] == "") {
-
-  } else if (cardSpecs[0] == "") {
-
-  }*/
-  let yCardValue = cardSpecs[1];
-
-  if (nyv > yCardValue) {
-    console.log("Loss");
-  } else if (nyv < yCardValue){
-    console.log("Win");
-  } else if (nyv == yCardValue){
-    console.log("Draw");
+  if (cardSpecs[0] == "spades") {
+    let card = document.getElementById("gameDiv3").innerHTML = "<img src='images/Spades.png'>";
+  } else if (cardSpecs[0] == "clubs") {
+    let card = document.getElementById("gameDiv3").innerHTML = "<img src='images/Clubs.png'>";
+  } else if (cardSpecs[0] == "hearts") {
+    let card = document.getElementById("gameDiv3").innerHTML = "<img src='images/Hearts.png'>";
+  } else if (cardSpecs[0] == "diamonds") {
+    let card = document.getElementById("gameDiv3").innerHTML = "<img src='images/Diamonds.png'>";
   }
-  console.log(cardSpecs);
+
+  let yCardValue = cardSpecs[1];
+  let difference = yCardValue - nyv;
+  if (difference < 0) {
+    losses++;
+    losses = document.getElementById("losses").innerHTML = losses;
+    wlRatio = (wins/losses).toFixed(5);
+    wlRatio = document.getElementById("wlRatio").innerHTML = wlRatio;
+  } else if (difference > 0){
+    wins++;
+    wins = document.getElementById("wins").innerHTML = wins;
+    wlRatio = (wins/losses).toFixed(5);
+    wlRatio = document.getElementById("wlRatio").innerHTML = wlRatio;
+  } else if (difference == 0){
+  }
+  cardSpecs = [];
 }
 
 function nyCardFlip(ny, y){
   findCard(ny);
-  /*if (cardSpecs[0] =="") {
 
-  } else if (cardSpecs[0] == "") {
+  if (cardSpecs[0] == "spades") {
+    let card = document.getElementById("gameDiv1").innerHTML = "<img src='images/Spades.png'>";
+  } else if (cardSpecs[0] == "clubs") {
+    let card = document.getElementById("gameDiv1").innerHTML = "<img src='images/Clubs.png'>";
+  } else if (cardSpecs[0] == "hearts") {
+    let card = document.getElementById("gameDiv1").innerHTML = "<img src='images/Hearts.png'>";
+  } else if (cardSpecs[0] == "diamonds") {
+    let card = document.getElementById("gameDiv1").innerHTML = "<img src='images/Diamonds.png'>";
+  }
 
-  } else if (cardSpecs[0] == "") {
-
-  } else if (cardSpecs[0] == "") {
-
-  } */
-  console.log(cardSpecs);
   var nyCardValue = cardSpecs[1];
   cardSpecs = [];
   yCardFlip(y, nyCardValue);
