@@ -107,12 +107,30 @@ function yCardFlip(y, nyv){
     wlRatio = (wins/losses).toFixed(5);
     wlRatio = document.getElementById("wlRatio").innerHTML = wlRatio;
     text = document.getElementById("gameDiv2").innerHTML = "Loss!";
+    let length = ycArray.length;
+    let place = turns%length;
+    let card = ycArray[place];
+    ycArray.splice(place, 1);
+    nycArray.push(card);
+    yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
+    nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
+    console.log(ycArray);
+    console.log(nycArray);
   } else if (difference > 0){
     wins++;
     wins = document.getElementById("wins").innerHTML = wins;
     wlRatio = (wins/losses).toFixed(5);
     wlRatio = document.getElementById("wlRatio").innerHTML = wlRatio;
     text = document.getElementById("gameDiv2").innerHTML = "Win!";
+    let length = nycArray.length;
+    let place = turns%length;
+    let card = nycArray[place];
+    nycArray.splice(place, 1);
+    ycArray.push(card);
+    yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
+    nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
+    console.log(ycArray);
+    console.log(nycArray);
   } else if (difference == 0){
     text = document.getElementById("gameDiv2").innerHTML = "War!";
   }
@@ -184,9 +202,15 @@ function nyCardFlip(ny, y){
 
 function flip(){
   turns += 1;
-  let place = turns % 26;
-  let yCard = ycArray[place];
-  let nyCard = nycArray[place];
+  if (turns > 26) {
+    turns -= 26;
+  }
+  let yL = ycArray.length;
+  let nyL = nycArray.length;
+  let yPlace = turns % yL;
+  let nyPlace = turns % nyL;
+  let yCard = ycArray[yPlace];
+  let nyCard = nycArray[nyPlace];
   cardSpecs = [];
   nyCardFlip(nyCard, yCard);
 }

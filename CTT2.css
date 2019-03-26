@@ -8,14 +8,14 @@ body {
 }
 
 .gameDiv {
-  border: 5px solid white;
+  border: 2px solid white;
   background-color:black;
   min-height:100px;
   width:500px;
   max-width: 500px;
   min-width: 500px;
   color:white;
-  font-size:120px;
+  font-size:100px;
   text-align: center;
   vertical-align: middle;
 }
