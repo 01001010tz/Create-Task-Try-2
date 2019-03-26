@@ -11,7 +11,23 @@ body {
   border: 5px solid white;
   background-color:black;
   min-height:100px;
-  width:400px;
+  width:500px;
+  max-width: 500px;
+  min-width: 500px;
+  color:white;
+  font-size:120px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#gameDiv1{
+font-size:192px;
+height: 220px;
+}
+
+#gameDiv3{
+font-size:192px;
+height: 220px;
 }
 
 #war{
