@@ -1,9 +1,10 @@
-var turns = 0;
 var ycArray = [];
 var nycArray = [];
 var cardSpecs = [];
 var wins = 0;
 var losses = 0;
+var yCardCounter;
+var nyCardCounter;
 
 function startGame(){
   var wlRatio = wins/losses;
@@ -103,34 +104,31 @@ function yCardFlip(y, nyv){
   let difference = yCardValue - nyv;
   if (difference < 0) {
     losses++;
-    losses = document.getElementById("losses").innerHTML = losses;
+    document.getElementById("losses").innerHTML = losses;
     wlRatio = (wins/losses).toFixed(5);
-    wlRatio = document.getElementById("wlRatio").innerHTML = wlRatio;
+    document.getElementById("wlRatio").innerHTML = wlRatio;
     text = document.getElementById("gameDiv2").innerHTML = "Loss!";
     let length = ycArray.length;
-    let place = turns%length;
+    let place = yCardCounter%length;
     let card = ycArray[place];
     ycArray.splice(place, 1);
     nycArray.push(card);
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
-    console.log(ycArray);
-    console.log(nycArray);
+
   } else if (difference > 0){
     wins++;
-    wins = document.getElementById("wins").innerHTML = wins;
+    document.getElementById("wins").innerHTML = wins;
     wlRatio = (wins/losses).toFixed(5);
-    wlRatio = document.getElementById("wlRatio").innerHTML = wlRatio;
+    document.getElementById("wlRatio").innerHTML = wlRatio;
     text = document.getElementById("gameDiv2").innerHTML = "Win!";
     let length = nycArray.length;
-    let place = turns%length;
+    let place = nyCardCounter%length;
     let card = nycArray[place];
     nycArray.splice(place, 1);
     ycArray.push(card);
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
-    console.log(ycArray);
-    console.log(nycArray);
   } else if (difference == 0){
     text = document.getElementById("gameDiv2").innerHTML = "War!";
   }
@@ -201,14 +199,12 @@ function nyCardFlip(ny, y){
 }
 
 function flip(){
-  turns += 1;
-  if (turns > 26) {
-    turns -= 26;
-  }
+  yCardCounter++;
+  nyCardCounter++;
   let yL = ycArray.length;
   let nyL = nycArray.length;
-  let yPlace = turns % yL;
-  let nyPlace = turns % nyL;
+  let yPlace = yCardCounter % yL;
+  let nyPlace = nyCardCounter % nyL;
   let yCard = ycArray[yPlace];
   let nyCard = nycArray[nyPlace];
   cardSpecs = [];
