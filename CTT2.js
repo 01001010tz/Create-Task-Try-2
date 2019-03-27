@@ -3,13 +3,14 @@ var nycArray = [];
 var cardSpecs = [];
 var wins = 0;
 var losses = 0;
-var yCardCounter;
-var nyCardCounter;
-var wlRatio = wins/losses;
+var yCardCounter = 0;
+var nyCardCounter = 0;
+var wlRatio = 0;
 var yCards;
 var nyCards;
 var cardValue;
 var suit;
+var playCheck = false;
 
 function startGame(){
   for (var y = 0; y < 26; y++) {
@@ -102,7 +103,7 @@ function yCardFlip(y, nyv){
   if (difference < 0) {
     losses++;
     document.getElementById("losses").innerHTML = losses;
-    wlRatio = (wins/losses).toFixed(5);
+    wlRatio = (wins*100/(wins+losses)).toFixed(5);
     document.getElementById("wlRatio").innerHTML = wlRatio;
     text = document.getElementById("gameDiv2").innerHTML = "Loss!";
     let length = ycArray.length;
@@ -110,13 +111,13 @@ function yCardFlip(y, nyv){
     let card = ycArray[place];
     ycArray.splice(place, 1);
     nycArray.push(card);
+    nyCardCounter++;
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
-
   } else if (difference > 0){
     wins++;
     document.getElementById("wins").innerHTML = wins;
-    wlRatio = (wins/losses).toFixed(5);
+    wlRatio = (wins*100/(wins+losses)).toFixed(5);
     document.getElementById("wlRatio").innerHTML = wlRatio;
     text = document.getElementById("gameDiv2").innerHTML = "Win!";
     let length = nycArray.length;
@@ -124,6 +125,7 @@ function yCardFlip(y, nyv){
     let card = nycArray[place];
     nycArray.splice(place, 1);
     ycArray.push(card);
+    yCardCounter++;
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
   } else if (difference == 0){
@@ -196,6 +198,7 @@ function nyCardFlip(ny, y){
 }
 
 function flip(){
+  playCheck = true;
   yCardCounter++;
   nyCardCounter++;
   let yL = ycArray.length;
@@ -432,4 +435,12 @@ function findCard(cardId){
   }
   cardSpecs.push(suit);
   cardSpecs.push(cardValue);
+}
+
+while (playCheck == true) {
+  if (ycArray.length == 0) {
+    alert("You are out of cards! Defeat!");
+  } else if (nycArray.length == 0) {
+    alert("Your opponent is out of cards! Victory!");
+  }
 }
