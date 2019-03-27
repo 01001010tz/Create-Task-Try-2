@@ -5,15 +5,13 @@ var wins = 0;
 var losses = 0;
 var yCardCounter;
 var nyCardCounter;
+var wlRatio = wins/losses;
+var yCards;
+var nyCards;
+var cardValue;
+var suit;
 
 function startGame(){
-  var wlRatio = wins/losses;
-  var yCards;
-  var nyCards;
-  var suit;
-  var cardValue;
-
-
   for (var y = 0; y < 26; y++) {
     let newCard = Math.floor(Math.random() * 52) + 1;
       if (ycArray.includes(newCard) == false) {
@@ -22,7 +20,6 @@ function startGame(){
         y--;
       }
   }
-
   for (var x = 0; x < 26; x++) {
     let newCard = Math.floor(Math.random() * 52) + 1;
       if (nycArray.includes(newCard) == false) {
@@ -435,5 +432,4 @@ function findCard(cardId){
   }
   cardSpecs.push(suit);
   cardSpecs.push(cardValue);
-  return cardSpecs;
 }
