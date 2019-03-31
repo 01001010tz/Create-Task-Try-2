@@ -113,14 +113,22 @@ function yCardFlip(y, nyv){
         let card = ycArray[place];
         ycArray.splice(place, 1);
         nycArray.push(card);
+        nyCardCounter++;
       } else if (isWarCheck == true) {
-        place -= 3;
-        ycArray.splice(place, 3);
+        place -= 4;
+          for (let i = 0; i <= 4; i++) {
+            place += i;
+            let card = ycArray[place];
+            ycArray.splice(place, 1);
+            nycArray.push(card);
+          }
+        nyCardCounter += 5;
       }
-    nyCardCounter++;
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
     isWarCheck = false;
+    alert(ycArray);
+    alert(nycArray);
   } else if (difference > 0){
     wins++;
     document.getElementById("wins").innerHTML = wins;
@@ -133,14 +141,22 @@ function yCardFlip(y, nyv){
         let card = nycArray[place];
         nycArray.splice(place, 1);
         ycArray.push(card);
+        yCardCounter++;
       } else if (isWarCheck == true) {
-        place -= 3;
-        nycArray.splice(place, 3);
+        place -= 4;
+          for (let i = 0; i <= 4; i++) {
+            place += i;
+            let card = nycArray[place];
+            nycArray.splice(place, 1);
+            ycArray.push(card);
+          }
+        yCardCounter += 5;
       }
-    yCardCounter++;
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
     isWarCheck = false;
+    alert(ycArray);
+    alert(nycArray);
   } else if (difference == 0){
     text = document.getElementById("gameDiv2").innerHTML = "War!";
     isWarCheck = true;
@@ -220,8 +236,8 @@ function flip(){
   let yPlace = yCardCounter % yL;
   let nyPlace = nyCardCounter % nyL;
     if (isWarCheck == true) {
-      yPlace += 3;
-      nyPlace += 3;
+      yPlace += 4;
+      nyPlace += 4;
     }
   let yCard = ycArray[yPlace];
   let nyCard = nycArray[nyPlace];
