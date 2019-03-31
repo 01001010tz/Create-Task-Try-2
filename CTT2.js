@@ -11,6 +11,7 @@ var nyCards;
 var cardValue;
 var suit;
 var playCheck = false;
+var isWarCheck = false;
 
 function startGame(){
   for (var y = 0; y < 26; y++) {
@@ -108,12 +109,21 @@ function yCardFlip(y, nyv){
     text = document.getElementById("gameDiv2").innerHTML = "Loss!";
     let length = ycArray.length;
     let place = yCardCounter%length;
-    let card = ycArray[place];
-    ycArray.splice(place, 1);
-    nycArray.push(card);
+      if (isWarCheck == true) {
+        place += 3;
+      }
+      if (isWarCheck == false) {
+        let card = ycArray[place];
+        ycArray.splice(place, 1);
+        nycArray.push(card);
+      } else if (isWarCheck == true) {
+        place -= 3;
+        ycArray.splice(place, 3);
+      }
     nyCardCounter++;
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
+    isWarCheck = false;
   } else if (difference > 0){
     wins++;
     document.getElementById("wins").innerHTML = wins;
@@ -122,14 +132,24 @@ function yCardFlip(y, nyv){
     text = document.getElementById("gameDiv2").innerHTML = "Win!";
     let length = nycArray.length;
     let place = nyCardCounter%length;
-    let card = nycArray[place];
-    nycArray.splice(place, 1);
-    ycArray.push(card);
+      if (isWarCheck == true) {
+        place += 3;
+      }
+      if (isWarCheck == false) {
+        let card = nycArray[place];
+        nycArray.splice(place, 1);
+        ycArray.push(card);
+      } else if (isWarCheck == true) {
+        place -= 3;
+        nycArray.splice(place, 3);
+      }
     yCardCounter++;
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
+    isWarCheck = false;
   } else if (difference == 0){
     text = document.getElementById("gameDiv2").innerHTML = "War!";
+    isWarCheck = true;
   }
   cardSpecs = [];
 }
@@ -205,6 +225,10 @@ function flip(){
   let nyL = nycArray.length;
   let yPlace = yCardCounter % yL;
   let nyPlace = nyCardCounter % nyL;
+    if (isWarCheck == true) {
+      yPlace += 3;
+      nyPlace += 3;
+    }
   let yCard = ycArray[yPlace];
   let nyCard = nycArray[nyPlace];
   cardSpecs = [];
