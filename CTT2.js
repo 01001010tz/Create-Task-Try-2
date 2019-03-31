@@ -24,9 +24,9 @@ function startGame(){
   }
   for (var x = 0; x < 26; x++) {
     let newCard = Math.floor(Math.random() * 52) + 1;
-      if (nycArray.includes(newCard) == false) {
+      if (nycArray.includes(newCard) == false && ycArray.includes(newCard) == false) {
         nycArray.push(newCard);
-      } else if (nycArray.includes(newCard) == true) {
+      } else if (nycArray.includes(newCard) == true || ycArray.includes(newCard) == true) {
         x--;
       }
   }
@@ -127,9 +127,7 @@ function yCardFlip(y, nyv){
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
     isWarCheck = false;
-    alert(ycArray);
-    alert(nycArray);
-  } else if (difference > 0){
+    } else if (difference > 0){
     wins++;
     document.getElementById("wins").innerHTML = wins;
     wlRatio = (wins*100/(wins+losses)).toFixed(5);
@@ -155,8 +153,6 @@ function yCardFlip(y, nyv){
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
     isWarCheck = false;
-    alert(ycArray);
-    alert(nycArray);
   } else if (difference == 0){
     text = document.getElementById("gameDiv2").innerHTML = "War!";
     isWarCheck = true;
