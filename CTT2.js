@@ -109,9 +109,6 @@ function yCardFlip(y, nyv){
     text = document.getElementById("gameDiv2").innerHTML = "Loss!";
     let length = ycArray.length;
     let place = yCardCounter%length;
-      if (isWarCheck == true) {
-        place += 3;
-      }
       if (isWarCheck == false) {
         let card = ycArray[place];
         ycArray.splice(place, 1);
@@ -132,9 +129,6 @@ function yCardFlip(y, nyv){
     text = document.getElementById("gameDiv2").innerHTML = "Win!";
     let length = nycArray.length;
     let place = nyCardCounter%length;
-      if (isWarCheck == true) {
-        place += 3;
-      }
       if (isWarCheck == false) {
         let card = nycArray[place];
         nycArray.splice(place, 1);
