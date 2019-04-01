@@ -114,6 +114,7 @@ function yCardFlip(y, nyv){
         ycArray.splice(place, 1);
         nycArray.push(card);
         nyCardCounter++;
+        yCardCounter++;
       } else if (isWarCheck == true) {
         place -= 4;
           for (let i = 0; i <= 4; i++) {
@@ -123,6 +124,7 @@ function yCardFlip(y, nyv){
             nycArray.push(card);
           }
         nyCardCounter += 5;
+        yCardCounter++;
       }
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
@@ -140,6 +142,7 @@ function yCardFlip(y, nyv){
         nycArray.splice(place, 1);
         ycArray.push(card);
         yCardCounter++;
+        nyCardCounter++;
       } else if (isWarCheck == true) {
         place -= 4;
           for (let i = 0; i <= 4; i++) {
@@ -149,6 +152,7 @@ function yCardFlip(y, nyv){
             ycArray.push(card);
           }
         yCardCounter += 5;
+        nyCardCounter++;
       }
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
@@ -225,8 +229,6 @@ function nyCardFlip(ny, y){
 
 function flip(){
   playCheck = true;
-  yCardCounter++;
-  nyCardCounter++;
   let yL = ycArray.length;
   let nyL = nycArray.length;
   let yPlace = yCardCounter % yL;
