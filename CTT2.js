@@ -119,28 +119,29 @@ function yCardFlip(y, nyv){
         place -= 4;
           for (let i = 0; i <= 4; i++) {
             place += i;
-            let card = ycArray[place];
+            let lossCard = ycArray[place];
             ycArray.splice(place, 1);
-            nycArray.push(card);
+            nycArray.push(lossCard);
           }
-        nyCardCounter += 5;
+      //  nyCardCounter += 5;
         yCardCounter++;
+        nyCardCounter++;
       }
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
     isWarCheck = false;
     } else if (difference > 0){
-    wins++;
-    document.getElementById("wins").innerHTML = wins;
-    wlRatio = (wins*100/(wins+losses)).toFixed(5);
-    document.getElementById("wlRatio").innerHTML = wlRatio;
-    text = document.getElementById("gameDiv2").innerHTML = "Win!";
-    let length = nycArray.length;
-    let place = nyCardCounter%length;
+      wins++;
+      document.getElementById("wins").innerHTML = wins;
+      wlRatio = (wins*100/(wins+losses)).toFixed(5);
+      document.getElementById("wlRatio").innerHTML = wlRatio;
+      text = document.getElementById("gameDiv2").innerHTML = "Win!";
+      let length = nycArray.length;
+      let place = nyCardCounter%length;
       if (isWarCheck == false) {
-        let card = nycArray[place];
+        let gainCard = nycArray[place];
         nycArray.splice(place, 1);
-        ycArray.push(card);
+        ycArray.push(gainCard);
         yCardCounter++;
         nyCardCounter++;
       } else if (isWarCheck == true) {
@@ -151,8 +152,9 @@ function yCardFlip(y, nyv){
             nycArray.splice(place, 1);
             ycArray.push(card);
           }
-        yCardCounter += 5;
+      //  yCardCounter += 5;
         nyCardCounter++;
+        yCardCounter++;
       }
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
@@ -231,14 +233,27 @@ function flip(){
   playCheck = true;
   let yL = ycArray.length;
   let nyL = nycArray.length;
+  //Include if statement to act as a modulus here, because that's probably and hopefully it...
   let yPlace = yCardCounter % yL;
   let nyPlace = nyCardCounter % nyL;
+
+  if (yCardCounter > yL) {
+    yCardCounter -= yL;
+    nyCardCounter++;
+    yCardCounter++;
+  } else if (nyCardCounter > nyL) {
+    nyCardCounter -= nyL;
+    nyCardCounter++;
+    yCardCounter++;
+  }
     if (isWarCheck == true) {
       yPlace += 4;
       nyPlace += 4;
     }
   let yCard = ycArray[yPlace];
   let nyCard = nycArray[nyPlace];
+  console.log(yPlace + " is your place");
+  console.log(nyPlace + " is not your place");
   cardSpecs = [];
   nyCardFlip(nyCard, yCard);
 }
