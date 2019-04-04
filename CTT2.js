@@ -12,6 +12,16 @@ var cardValue;
 var suit;
 var playCheck = false;
 var isWarCheck = false;
+var canWarCheck = true;
+
+while (playCheck == true){
+  if (nycArray.length + 4 < nyCardCounter){
+    canWarCheck = false;
+  }
+  if (ycArray.length + 4 < yCardCounter){
+    canWarCheck = false;
+  }
+}
 
 function startGame(){
   for (var y = 0; y < 26; y++) {
@@ -159,9 +169,13 @@ function yCardFlip(y, nyv){
     yCards = document.getElementById("yourCards").innerHTML = ycArray.length;
     nyCards = document.getElementById("opponentCards").innerHTML= nycArray.length;
     isWarCheck = false;
-  } else if (difference == 0){
+  } else if (difference == 0 && canWarCheck == true){
     text = document.getElementById("gameDiv2").innerHTML = "War!";
     isWarCheck = true;
+  } else if (difference == 0 && canWarCheck == false){
+    yCardCounter++;
+    nyCardCounter++;
+    flip();
   }
   cardSpecs = [];
 }
@@ -233,17 +247,15 @@ function flip(){
   playCheck = true;
   let yL = ycArray.length;
   let nyL = nycArray.length;
-  //Include if statement to act as a modulus here, because that's probably and hopefully it...
-  let yPlace = yCardCounter % yL;
-  let nyPlace = nyCardCounter % nyL;
+  let yPlace = yCardCounter%yL;
+  let nyPlace = nyCardCounter%nyL;
 
   if (yCardCounter > yL) {
-    yCardCounter -= yL;
+    yCardCounter = 0;
     nyCardCounter++;
-    yCardCounter++;
-  } else if (nyCardCounter > nyL) {
-    nyCardCounter -= nyL;
-    nyCardCounter++;
+  }
+   if (nyCardCounter > nyL) {
+    nyCardCounter = 0;
     yCardCounter++;
   }
     if (isWarCheck == true) {
